@@ -7,7 +7,8 @@ RUN  sudo apt update \
     && sudo apt -y -q install golang make
 
 #ADD https://gomirrors.org/dl/go/go1.14.linux-amd64.tar.gz /usr/lib/go-1.14/
-RUN cd /usr/lib/go-1.14/ && \
+RUN mkdir /usr/lib/go-1.14/ && \
+    cd /usr/lib/go-1.14/ && \
     wget https://dl.google.com/go/go1.14.linux-amd64.tar.gz && \
     tar xzvf go1.14.linux-amd64.tar.gz && \
     rm -f go1.14.linux-amd64.tar.gz
