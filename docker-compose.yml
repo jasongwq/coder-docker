@@ -1,14 +1,11 @@
 version: '2'
 services:
   coder:
-    environment:
-      - SEARCH=true
-    image: 'jasongwq/coder'
+    image: 'registry.cn-hangzhou.aliyuncs.com/jasongwq/coder'
     restart: always
     container_name: coder
     ports:
       - '8088:8080'
-      - '8099:4000'
       - '8018:5000' #srs http
       - '1935:1935' #srs rtmp
       - '1985:1985' #srs http api
