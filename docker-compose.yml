@@ -1,0 +1,27 @@
+version: '2'
+services:
+  coder:
+    environment:
+      - SEARCH=true
+    image: 'jasongwq/coder'
+    restart: always
+    container_name: coder
+    ports:
+      - '8088:8080'
+      - '8099:4000'
+      - '8018:5000' #srs http
+      - '1935:1935' #srs rtmp
+      - '1985:1985' #srs http api
+      - "3479:3479/udp" #srs webrtc
+      - "5070:5070/udp" #srs sip
+      - "9000:9000/udp" #srs sip
+    volumes:
+      - '/home/docker_data/coder/root/:/root'
+      - '/etc/localtime:/etc/localtime'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/usr/bin/docker:/usr/bin/docker'
+
+networks:
+  default:
+    external:
+     name: all
