@@ -6,10 +6,11 @@ RUN sudo sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \
 RUN  sudo apt update \
     && sudo apt -y -q install golang make
 
+USER 0:0
 #ADD https://gomirrors.org/dl/go/go1.14.linux-amd64.tar.gz /usr/lib/go-1.14/
 RUN mkdir /usr/lib/go-1.14/ && \
     cd /usr/lib/go-1.14/ && \
-    wget https://dl.google.com/go/go1.14.linux-amd64.tar.gz && \
+    curl https://dl.google.com/go/go1.14.linux-amd64.tar.gz -o go1.14.linux-amd64.tar.gz&& \
     tar xzvf go1.14.linux-amd64.tar.gz && \
     rm -f go1.14.linux-amd64.tar.gz
      
@@ -17,7 +18,6 @@ RUN mkdir /usr/lib/go-1.14/ && \
 COPY golangci-lint /root/go/bin/
 COPY promu /root/go/bin/
 ENV PATH=$PATH:/usr/local/go-1.14/go/bin
-USER 0:0
 ENV GOROOT=/usr/lib/go-1.14/go
 ENV GOPROXY=https://goproxy.io
 ENV GO111MODULE=on
